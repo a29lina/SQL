@@ -5,9 +5,9 @@ CREATE TABLE smartphone
 (
 id INT PRIMARY KEY AUTO_INCREMENT,
 ProductName VARCHAR(45) NOT NULL,
-Manufacturer VARCHAR(45),
-ProductCount INT,
-Price INT
+Manufacturer VARCHAR(45) NOT NULL,
+ProductCount INT NOT NULL,
+Price INT NOT NULL
 );
 
 INSERT smartphone(ProductName, Manufacturer, 
