@@ -29,7 +29,6 @@ SELECT ProductName, ProductCount FROM smartphone
 WHERE Manufacturer = 'Samsung';
 
 -- 4. 	Выведите информацию о телефонах, где суммарный чек больше 100 000 и меньше 145 000**
-
 SELECT ProductName, Manufacturer, ProductCount, Price 
 FROM smartphone
 WHERE price * productcount > 100000 AND price * productcount < 145000;
