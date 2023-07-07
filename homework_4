@@ -1,0 +1,33 @@
+-- 1. Вывести всех котиков по магазинам по id (условие соединения shops.id = cats.shops_id):
+
+SELECT cats.name, shops.shopname
+FROM cats
+JOIN shops ON shops.id = cats.shops_id;
+
+-- 2. Вывести магазин, в котором продается кот “Мурзик” (попробуйте выполнить 2 способами):
+
+SELECT cats.name, shops.shopname
+FROM cats
+JOIN shops
+ON shops.id = cats.shops_id
+WHERE name = 'Murzik';
+
+SELECT shops.shopname
+FROM shops
+WHERE id IN 
+(SELECT shops_id FROM cats WHERE name = 'Murzik');
+
+-- 3. Вывести магазины, в которых НЕ продаются коты “Мурзик” и “Zuza”:
+
+SELECT shops.shopname
+FROM shops
+WHERE id NOT IN
+(SELECT shops_id FROM cats WHERE name IN ('Murzik', 'Zuza'));
+
+-- 4. Вывести название и цену для всех анализов, которые продавались 5 февраля 2020 и всю следующую неделю:
+
+SELECT analysis.an_name, analysis.an_price
+FROM analysis
+JOIN orders
+ON analysis.an_id = orders.ord_id
+AND orders.ord_datetime BETWEEN '2020-02-05' AND '2020-02-12';
