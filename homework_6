@@ -1,0 +1,55 @@
+/* 1. Создайте функцию, которая принимает кол-во сек и формат их в кол-во дней, часов, минут и секунд.
+Пример: 123456 ->'1 days 10 hours 17 minutes 36 seconds ' */
+
+DROP PROCEDURE IF EXISTS time;
+
+DELIMITER $$
+CREATE PROCEDURE time(second INT)
+BEGIN
+    DECLARE day INT default 0;
+    DECLARE hour INT default 0;
+    DECLARE minute INT default 0;
+
+    WHILE second >= 84600 DO
+    SET day = second / 84600;
+    SET second = second % 84600;
+    END WHILE;
+
+    WHILE second >= 3600 DO
+    SET hour = second / 3600;
+    SET second = second % 3600;
+    END WHILE;
+
+    WHILE second >= 60 DO
+    SET minute = second / 60;
+    SET second = second % 60;
+    END WHILE;
+
+SELECT day, hour, minute, second;
+END $$
+DELIMITER ;
+
+CALL time(1234567);
+
+/* 2. Выведите только четные числа от 1 до 10 (Через цикл).
+Пример: 2,4,6,8,10 */
+
+DROP PROCEDURE IF EXISTS number;
+
+DELIMITER $$
+CREATE PROCEDURE number()
+BEGIN
+    DECLARE n INT default 0;
+    DROP TABLE IF EXISTS num;
+    CREATE TABLE num (n INT);
+
+    WHILE n < 10 DO
+    SET n = n + 2;
+    INSERT INTO num VALUES(n);
+    END WHILE;
+
+SELECT * FROM num;
+END $$
+DELIMITER ;
+
+CALL number();
